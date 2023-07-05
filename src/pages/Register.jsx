@@ -1,6 +1,6 @@
 import addAvatar from "../assets/addAvatar.png";
 import { useState } from "react";
-import handleSubmit from "../utils/registerUtils";
+import handleSubmit from "../utils/registerUtil";
 
 const Register = () => {
   const [error, setError] = useState(false);
