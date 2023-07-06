@@ -177,8 +177,8 @@ $darkColor: #2f2d52;
       }
 
       .chats {
-        overflow: scroll;
-        height: calc(100% - 180px);
+        overflow-y: auto;
+        height: calc(100% - 110px);
       }
 
       .userChat {
@@ -241,7 +241,7 @@ $darkColor: #2f2d52;
         background-color: #ddddf7;
         padding: 10px;
         height: calc(100% - 140px);
-        overflow: scroll;
+        overflow-y: auto;
 
         .message {
           display: flex;

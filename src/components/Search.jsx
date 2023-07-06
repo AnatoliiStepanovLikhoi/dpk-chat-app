@@ -15,10 +15,15 @@ const Search = () => {
 
     try {
       const querySnapshot = await getDocs(q);
-      querySnapshot.forEach((doc) => {
-        // console.log(doc.id, " => ", doc.data());
-        setUser(doc.data());
-      });
+      if (querySnapshot.empty) {
+        setError(true);
+        setUser(null);
+      } else {
+        setError(false);
+        querySnapshot.forEach((doc) => {
+          setUser(doc.data());
+        });
+      }
     } catch (error) {
       setError(true);
     }
@@ -37,7 +42,7 @@ const Search = () => {
           onChange={findUser}
         />
       </div>
-      {error && <span>User isn`t found!</span>}
+      {error && <span>User is not found!</span>}
       {user && (
         <div className="userChat">
           <img src={user.photoURL} alt="avatar" />
