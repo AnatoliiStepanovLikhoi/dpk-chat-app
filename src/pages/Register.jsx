@@ -1,9 +1,11 @@
 import addAvatar from "../assets/addAvatar.png";
 import { useState } from "react";
 import handleSubmit from "../utils/registerUtil";
+import { useNavigate, Link } from "react-router-dom";
 
 const Register = () => {
   const [error, setError] = useState(false);
+  const navigate = useNavigate();
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -14,6 +16,7 @@ const Register = () => {
     const file = e.target[3].files[0];
 
     handleSubmit(displayName, email, password, file, setError);
+    navigate("/");
   };
 
   return (
@@ -33,7 +36,9 @@ const Register = () => {
           <button type="submit">Sign up</button>
           {error && <span>Oops, something went wrong</span>}
         </form>
-        <p>Do you have account? Log in!</p>
+        <p>
+          Do you have account? <Link to="/login">Log in!</Link>
+        </p>
       </div>
     </div>
   );

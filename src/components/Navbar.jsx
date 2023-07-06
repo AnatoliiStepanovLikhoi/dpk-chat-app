@@ -1,3 +1,6 @@
+import { signOut } from "firebase/auth";
+import { auth } from "../utils/firebase";
+
 const Navbar = () => {
   return (
     <div className="navbar">
@@ -8,7 +11,13 @@ const Navbar = () => {
           alt=""
         />
         <span>Camander</span>
-        <button>logout</button>
+        <button
+          onClick={() => {
+            signOut(auth);
+          }}
+        >
+          logout
+        </button>
       </div>
     </div>
   );

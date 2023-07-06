@@ -61,12 +61,17 @@ const saveUserToDatabase = (user, displayName, email, downloadURL) => {
   return setDoc(doc(db, "users", user.uid), userData);
 };
 
+const saveChatsToDatabase = (user) => {
+  return setDoc(doc(db, "userChats", user.uid), {});
+};
+
 const handleSubmit = async (displayName, email, password, file, setError) => {
   try {
     const user = await createUser(displayName, email, password);
     const downloadURL = await uploadAvatar(file, displayName);
     await updateUserProfile(user, displayName, downloadURL);
     await saveUserToDatabase(user, displayName, email, downloadURL);
+    await saveChatsToDatabase(user);
   } catch (error) {
     setError(true);
   }
