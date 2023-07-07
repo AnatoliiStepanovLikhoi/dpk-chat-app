@@ -28,21 +28,25 @@ const Chats = () => {
     dispatch({ type: "CHANGE_USER", payload: user });
   };
 
+  console.log(chats);
+
   return (
     <div className="chats">
-      {Object.entries(chats)?.map((chat) => (
-        <div
-          className="userChat"
-          key={chat[0]}
-          onClick={() => handleSelect(chat[1].userInfo)}
-        >
-          <img src={chat[1].userInfo.photoURL} alt="avatar" />
-          <div className="userChatInfo">
-            <span>{chat[1].userInfo.displayName}</span>
-            <p>{chat[1].userInfo.lastMessage?.text}</p>
-          </div>
-        </div>
-      ))}
+      {chats &&
+        // prettier-ignore
+        Object.entries(chats)?.sort((a,b)=>b[0].date - a[1].date).map((chat) => (
+            <div
+              className="userChat"
+              key={chat[0]}
+              onClick={() => handleSelect(chat[1])}
+            >
+              <img src={chat[1].photoURL} alt="avatar" />
+              <div className="userChatInfo">
+                <span>{chat[1].displayName}</span>
+                <p>{chat[1]?.lastMessage?.text}</p>
+              </div>
+            </div>
+          ))}
     </div>
   );
 };
