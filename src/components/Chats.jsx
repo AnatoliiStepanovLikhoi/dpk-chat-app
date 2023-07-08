@@ -28,21 +28,22 @@ const Chats = () => {
     dispatch({ type: "CHANGE_USER", payload: user });
   };
 
-  console.log(chats);
+  // console.log(chats);
 
   return (
     <div className="chats">
       {chats &&
-        // prettier-ignore
-        Object.entries(chats)?.sort((a,b)=>b[0].date - a[1].date).map((chat) => (
+        Object.entries(chats)
+          ?.sort((a, b) => b[1].date - a[1].date)
+          .map((chat) => (
             <div
               className="userChat"
               key={chat[0]}
-              onClick={() => handleSelect(chat[1])}
+              onClick={() => handleSelect(chat[1].userInfo)}
             >
-              <img src={chat[1].photoURL} alt="avatar" />
+              <img src={chat[1].userInfo.photoURL} alt="avatar" />
               <div className="userChatInfo">
-                <span>{chat[1].displayName}</span>
+                <span>{chat[1].userInfo.displayName}</span>
                 <p>{chat[1]?.lastMessage?.text}</p>
               </div>
             </div>
